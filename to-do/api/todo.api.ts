@@ -8,7 +8,7 @@ export const getTodos = async () => {
   return data;
 };
 
-export const createTodo = async (title: string) => {
+export const createTodo = async (title: Todo["title"]) => {
   const response = await fetch(BASE_URL, {
     method: "POST",
     headers: {
