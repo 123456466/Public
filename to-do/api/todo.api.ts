@@ -12,6 +12,18 @@ export const getTodos = async () => {
     },
   });
   const data: Todo[] = await response.json();
+
+  return data;
+};
+
+export const getTodoItem = async (id: Todo["id"]) => {
+  const response = await fetch(`${BASE_URL}/${id}`, {
+    next: {
+      tags: ["todos", String(id)],
+    },
+  });
+  const data: Todo = await response.json();
+
   return data;
 };
 
@@ -24,7 +36,9 @@ export const createTodo = async (title: Todo["title"]) => {
     body: JSON.stringify({ title, completed: false }),
   });
   const data: Todo = await response.json();
+
   revalidateTag("/");
+
   return data;
 };
 
@@ -33,7 +47,9 @@ export const delTodo = async (id: Todo["id"]) => {
     method: "DELETE",
   });
   const data: Todo = await response.json();
+
   revalidateTag("/");
+
   return data;
 };
 
@@ -49,6 +65,8 @@ export const toggleTodoCompleted = async (
     body: JSON.stringify({ completed }),
   });
   const data: Todo = await response.json();
+
   revalidateTag("/");
+
   return data;
 };
