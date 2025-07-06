@@ -1,10 +1,10 @@
 "use client";
 
-import { useTodoMutation } from "@/query/useTodoMutation";
+import { useCreateTodoMutation } from "@/query/useTodoMutation";
 import React from "react";
 
 const TodoForm = () => {
-  const { mutateAsync: createTodo } = useTodoMutation();
+  const { mutateAsync: createTodo } = useCreateTodoMutation();
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -37,3 +37,6 @@ const TodoForm = () => {
 };
 
 export default TodoForm;
+function useTodoMutation(): { mutateAsync: any } {
+  throw new Error("Function not implemented.");
+}
