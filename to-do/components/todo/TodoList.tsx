@@ -1,9 +1,15 @@
-import React from "react";
-import { getTodos } from "../../api/todo.api";
-import TodoItem from "./TodoItem";
+"use client";
 
-const TodoList = async () => {
-  const todos = await getTodos();
+import React from "react";
+import TodoItem from "./TodoItem";
+import { useTodosQuery } from "@/query/useTodoQuery";
+
+const TodoList = () => {
+  const { data: todos } = useTodosQuery();
+
+  if (!todos) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <ul>

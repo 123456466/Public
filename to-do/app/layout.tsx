@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Providers from "./porviders";
 
 export const metadata: Metadata = {
   title: "To-Do",
@@ -14,8 +15,12 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body>
-        <div className="text-center text-2xl font-bold my-10">Todo List</div>
-        {children}
+        <Providers>
+          <header className="text-center text-2xl font-bold my-10">
+            Todo List
+          </header>
+          {children}
+        </Providers>
       </body>
     </html>
   );

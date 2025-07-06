@@ -1,5 +1,3 @@
-"use server";
-
 import { revalidateTag } from "next/cache";
 import { Todo } from "../types/todo.type";
 
@@ -37,8 +35,6 @@ export const createTodo = async (title: Todo["title"]) => {
   });
   const data: Todo = await response.json();
 
-  revalidateTag("/");
-
   return data;
 };
 
@@ -47,8 +43,6 @@ export const delTodo = async (id: Todo["id"]) => {
     method: "DELETE",
   });
   const data: Todo = await response.json();
-
-  revalidateTag("/");
 
   return data;
 };
@@ -65,8 +59,6 @@ export const toggleTodoCompleted = async (
     body: JSON.stringify({ completed }),
   });
   const data: Todo = await response.json();
-
-  revalidateTag("/");
 
   return data;
 };
