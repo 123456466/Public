@@ -1,9 +1,11 @@
 "use client";
 
-import { createTodo } from "@/api/todo.api";
+import { useTodoMutation } from "@/query/useTodoMutation";
 import React from "react";
 
 const TodoForm = () => {
+  const { mutateAsync: createTodo } = useTodoMutation();
+
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
