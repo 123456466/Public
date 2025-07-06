@@ -1,16 +1,6 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import Providers from "./porviders";
 
 export const metadata: Metadata = {
   title: "To-Do",
@@ -24,10 +14,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body>
+        <Providers>
+          <header className="text-center text-2xl font-bold my-10">
+            Todo List
+          </header>
+          {children}
+        </Providers>
       </body>
     </html>
   );
