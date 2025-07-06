@@ -2,14 +2,17 @@
 
 import React from "react";
 import { Todo } from "../../types/todo.type";
-import { delTodo, toggleTodoCompleted } from "../../api/todo.api";
+import { toggleTodoCompleted } from "../../api/todo.api";
 import Link from "next/link";
+import { useDeleteTodoMutation } from "@/query/useTodoMutation";
 
 interface TodoItemProps {
   todo: Todo;
 }
 
 export default function TodoItem({ todo }: TodoItemProps) {
+  const { mutate: deleteTodo } = useDeleteTodoMutation();
+
   return (
     <article className="text-center border border-gray-300 rounded max-w-300 flex justify-end items-center p-5 m-auto mb-5">
       <Link
@@ -33,7 +36,7 @@ export default function TodoItem({ todo }: TodoItemProps) {
           {todo.completed ? "취소" : "완료"}
         </button>
         <button
-          onClick={() => delTodo(todo.id)}
+          onClick={() => deleteTodo(todo.id)}
           className="bg-gray-500 text-white p-2 rounded mx-4 cursor-pointer"
         >
           삭제
